@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js" defer></script>
+    <title>Simon by Corey</title>
+  </head>
+  <body>
+    <nav>
+      <p>Simon by Corey</p>
+      <p>Nov 2022</p>
+    </nav>
+    <div class="game-screen">
+      <div class="game-board">
+        <div class="board-section" id="computer-side">
+          <div class="tile blue" id="cpu-first-tile"></div>
+          <div class="tile red" id="cpu-second-tile"></div>
+          <div class="tile green" id="cpu-third-tile"></div>
+          <div class="tile orange" id="cpu-fourth-tile"></div>
+        </div>
+        <div class="board-section" id="dmz">
+          <div class="dividing-line"></div>
+        </div>
+        <div class="board-section" id="player-side">
+          <div class="tile blue" id="player-first-tile"></div>
+          <div class="tile red" id="player-second-tile"></div>
+          <div class="tile green" id="player-third-tile"></div>
+          <div class="tile orange" id="player-fourth-tile"></div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bar">
+      <p>Thanks for playing!</p>
+    </div>
+  </body>
+</html>
