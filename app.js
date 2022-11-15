@@ -16,27 +16,72 @@ let playerMoves = [1,2]
     const playerThirdTile = document.querySelector("#player-third-tile")
     const playerFourthTile = document.querySelector("#player-fourth-tile")
 
+    // if computerMove[0] = 1, 
+    // toggle('activate-tile') for tile 1
+    
+    cpuFirstTile.addEventListener('click',() =>{
+        console.log(`cpu tile 1 clicked`)
+        cpuFirstTile.classList.toggle('activate-tile')
+        setTimeout(() =>{
+            cpuFirstTile.classList.toggle('activate-tile')
+        },500)
+    } )
+    cpuSecondTile.addEventListener('click', ()=>{
+        console.log(`cpu tile 2 clicked`)
+        cpuSecondTile.classList.toggle(`activate-tile`)
+        setTimeout(()=>{
+            cpuSecondTile.classList.toggle('activate-tile')
+        },500)
+    })
+    cpuThirdTile.addEventListener('click', ()=>{
+    console.log(`cpu tile 3 clicked`)
+    cpuThirdTile.classList.toggle(`activate-tile`)
+    setTimeout(()=>{
+        cpuThirdTile.classList.toggle(`activate-tile`)
+    },500)
+    })
+    cpuFourthTile.addEventListener('click', ()=>{
+    console.log(`cpu tile 4 clicked`)
+    cpuFourthTile.classList.toggle(`activate-tile`)
+    setTimeout(()=>{
+        cpuFourthTile.classList.toggle(`activate-tile`)
+    },500)
+    })
+
     playerFirstTile.addEventListener('click', () => {
-        console.log(`tile 1 clicked`)
-        playerFirstTile.classList.toggle('big-tile')
+        console.log(`player tile 1 clicked`)
+        playerFirstTile.classList.toggle('activate-tile')
+        // removes activate-tile after animation completes
+        setTimeout(()=>{
+        	playerFirstTile.classList.toggle('activate-tile');
+        }, 500);
         // add to playerMove array
         // check against computer move
     })
     playerSecondTile.addEventListener('click', () => {
-        console.log(`tile 2 clicked`)
-        playerSecondTile.classList.toggle('big-tile')
+        console.log(`player tile 2 clicked`)
+        playerSecondTile.classList.toggle('activate-tile')
+        setTimeout(()=>{
+            playerSecondTile.classList.toggle('activate-tile');
+        }, 500);
         // add to playerMove array
         // check against computer move
     })
     playerThirdTile.addEventListener('click', () => {
-        console.log(`tile 3 clicked`)
-        playerThirdTile.classList.toggle('big-tile')
+        console.log(`player tile 3 clicked`)
+        playerThirdTile.classList.toggle('activate-tile')
+        setTimeout(()=>{
+            playerThirdTile.classList.toggle('activate-tile');
+        }, 500);
         // add to playerMove array
         // check against computer move
     })
     playerFourthTile.addEventListener('click', () => {
-        console.log(`tile 4 clicked`)
-        playerFourthTile.classList.toggle('big-tile')
+        console.log(`player tile 4 clicked`)
+        playerFourthTile.classList.toggle('activate-tile')
+        setTimeout(()=>{
+            playerFourthTile.classList.toggle('activate-tile');
+        }, 500);
         // add to playerMove array
         // check against computer move
     })
@@ -61,7 +106,6 @@ function gameRound() {
     // playerTurn()
     compareTurns()
 }
-
 
 function computerTurn(){
 // notify user that it's the CPU's turn by unhiding CPU text

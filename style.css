@@ -74,17 +74,17 @@ align-items: center;
 .orange {
     background-color: rgb(232,164,51);
 }
-    .big-tile{
-        animation: activateTile .5s ease-in-out;
+.activate-tile{
+    animation: activateTile .5s ease-in-out;
+}
+@keyframes activateTile {
+    0% {
+        transform: scale(1);
     }
-    @keyframes activateTile {
-        0% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.25);
-        }
-        100% {
-            transform: scale(1);
-        }
-      }
+    50% {
+        transform: scale(1.25);
+    }
+    100% {
+        transform: scale(1);
+    }
+    }
