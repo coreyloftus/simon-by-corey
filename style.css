@@ -1,9 +1,7 @@
 body {
     background-color: #1B1A1A;
     color:white;
-    
 }
-
 nav {
     display:flex;
     justify-content: space-around;
@@ -22,34 +20,47 @@ nav {
 }
 .board-section {
 width:90%;
-height:33%;
+height:25%;
 background-color: rgba(255,255,255,.25);
+padding:20px;
 display:flex;
 justify-content: space-between;
+align-items: center;
 }
 #computer-side {
-    background-color: rgba(232,125,227,.5);
+    background-color: rgba(250,250,250,.5);
 }
-#dmz {
-    background-color: rgba(23,129,131,0.5);
+#player-side {
+    background-color: rgba(250,250,250,.5);
 }
-.dividing-line {
-    width:100%;
-    height:2px;
+#status-bar {
+display:flex;
+flex-direction: column;
+align-items: center;
+}
+#board-divider {
     background-color: white;
-    align-self: center;
-    justify-self: center;
-    z-index:0;
+    height:2px;
+    width:100%;
 }
 
-#player-side {
-    background-color: rgba(250,243,51,.5);
-}
 .tile {
     width:100px;
     height:100px;
+    background-color: white;
 }
-
+.blue {
+    background-color: rgb(20,151,252);
+}
+.red {
+    background-color: rgb(212,89,84);
+}
+.green {
+    background-color: rgb(117,202,60);
+}
+.orange {
+    background-color: rgb(232,164,51);
+}
 .footer-bar {
     display:flex;
     justify-content: center;
