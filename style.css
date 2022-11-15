@@ -34,14 +34,20 @@ align-items: center;
     background-color: rgba(250,250,250,.5);
 }
 #status-bar {
-display:flex;
-flex-direction: column;
-align-items: center;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
 }
 #board-divider {
     background-color: white;
     height:2px;
-    width:100%;
+    width:80%;
+    position:fixed;
+    top:50%;
+}
+.footer-bar {
+    display:flex;
+    justify-content: center;
 }
 
 .tile {
@@ -49,6 +55,13 @@ align-items: center;
     height:100px;
     background-color: white;
 }
+
+/* status-bar modifier classes */
+.bold {
+    font-weight: bold;
+}
+
+/* tile modifier classes */
 .blue {
     background-color: rgb(20,151,252);
 }
@@ -61,7 +74,17 @@ align-items: center;
 .orange {
     background-color: rgb(232,164,51);
 }
-.footer-bar {
-    display:flex;
-    justify-content: center;
-}
+    .big-tile{
+        animation: activateTile .5s ease-in-out;
+    }
+    @keyframes activateTile {
+        0% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.25);
+        }
+        100% {
+            transform: scale(1);
+        }
+      }

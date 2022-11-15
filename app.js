@@ -4,27 +4,57 @@ let playerMoves = [1,2]
 
 
 // getters & setters
-const cpuFirstTile = document.querySelector("#cpu-first-tile")
-const cpuSecondTile = document.querySelector("cpu-second-tile")
-const cpuThirdTile = document.querySelector("cpu-third-tile")
-const cpuFourthTile = document.querySelector("cpuFourthTile")
 
-const playerFirstTile = document.querySelector("#player-first-tile")
-const playerSecondTile = document.querySelector("#player-second-tile")
-const playerThirdTile = document.querySelector("#player-third-tile")
-const playerFourthTile = document.querySelector("#player-fourth-tile")
+    // tiles
+    const cpuFirstTile = document.querySelector("#cpu-first-tile")
+    const cpuSecondTile = document.querySelector("cpu-second-tile")
+    const cpuThirdTile = document.querySelector("cpu-third-tile")
+    const cpuFourthTile = document.querySelector("cpuFourthTile")
 
-cpuFirstTile.addEventListener('click', () => {
-    console.log(`${this} button clicked`)
- })
+    const playerFirstTile = document.querySelector("#player-first-tile")
+    const playerSecondTile = document.querySelector("#player-second-tile")
+    const playerThirdTile = document.querySelector("#player-third-tile")
+    const playerFourthTile = document.querySelector("#player-fourth-tile")
 
- 
+    playerFirstTile.addEventListener('click', () => {
+        console.log(`tile 1 clicked`)
+        playerFirstTile.classList.toggle('big-tile')
+        // add to playerMove array
+        // check against computer move
+    })
+    playerSecondTile.addEventListener('click', () => {
+        console.log(`tile 2 clicked`)
+        playerSecondTile.classList.toggle('big-tile')
+        // add to playerMove array
+        // check against computer move
+    })
+    playerThirdTile.addEventListener('click', () => {
+        console.log(`tile 3 clicked`)
+        playerThirdTile.classList.toggle('big-tile')
+        // add to playerMove array
+        // check against computer move
+    })
+    playerFourthTile.addEventListener('click', () => {
+        console.log(`tile 4 clicked`)
+        playerFourthTile.classList.toggle('big-tile')
+        // add to playerMove array
+        // check against computer move
+    })
+    
+    // status bar text
+    const cpuStatusText = document.querySelector("#cpu-status-text")
+    const playerStatusText = document.querySelector("#player-status-text")
+
+    cpuStatusText.addEventListener('click', ()=>{
+        console.log('clicked on cpuStatusText')
+        cpuStatusText.classList.toggle('bold')
+    })
+
 
 // testing
 // gameRound()
 
 // functions
-
 
 function gameRound() {
     // computerTurn()
