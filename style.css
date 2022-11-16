@@ -58,8 +58,9 @@ align-items: center;
 }
 
 /* status-bar modifier classes */
-.bold {
+.your-turn {
     font-weight: bold;
+    font-size: 50px;
 }
 
 /* tile modifier classes */
@@ -83,7 +84,7 @@ align-items: center;
         transform: scale(1);
     }
     50% {
-        transform: scale(1.25);
+        transform: scale(1.5);
     }
     100% {
         transform: scale(1);
