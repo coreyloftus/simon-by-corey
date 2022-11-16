@@ -7,9 +7,9 @@ let playerMoves = [1,2]
 
     // tiles
     const cpuFirstTile = document.querySelector("#cpu-first-tile")
-    const cpuSecondTile = document.querySelector("cpu-second-tile")
-    const cpuThirdTile = document.querySelector("cpu-third-tile")
-    const cpuFourthTile = document.querySelector("cpuFourthTile")
+    const cpuSecondTile = document.querySelector("#cpu-second-tile")
+    const cpuThirdTile = document.querySelector("#cpu-third-tile")
+    const cpuFourthTile = document.querySelector("#cpu-fourth-tile")
 
     const playerFirstTile = document.querySelector("#player-first-tile")
     const playerSecondTile = document.querySelector("#player-second-tile")
@@ -26,7 +26,7 @@ let playerMoves = [1,2]
             cpuFirstTile.classList.toggle('activate-tile')
         },500)
     } )
-    cpuSecondTile.addEventListener('click', ()=>{
+    cpuSecondTile.addEventListener('click',() =>{
         console.log(`cpu tile 2 clicked`)
         cpuSecondTile.classList.toggle(`activate-tile`)
         setTimeout(()=>{
@@ -53,8 +53,8 @@ let playerMoves = [1,2]
         playerFirstTile.classList.toggle('activate-tile')
         // removes activate-tile after animation completes
         setTimeout(()=>{
-        	playerFirstTile.classList.toggle('activate-tile');
-        }, 500);
+        	playerFirstTile.classList.toggle('activate-tile')
+        }, 500)
         // add to playerMove array
         // check against computer move
     })
@@ -62,8 +62,8 @@ let playerMoves = [1,2]
         console.log(`player tile 2 clicked`)
         playerSecondTile.classList.toggle('activate-tile')
         setTimeout(()=>{
-            playerSecondTile.classList.toggle('activate-tile');
-        }, 500);
+            playerSecondTile.classList.toggle('activate-tile')
+        }, 500)
         // add to playerMove array
         // check against computer move
     })
@@ -71,8 +71,8 @@ let playerMoves = [1,2]
         console.log(`player tile 3 clicked`)
         playerThirdTile.classList.toggle('activate-tile')
         setTimeout(()=>{
-            playerThirdTile.classList.toggle('activate-tile');
-        }, 500);
+            playerThirdTile.classList.toggle('activate-tile')
+        }, 500)
         // add to playerMove array
         // check against computer move
     })
@@ -80,8 +80,8 @@ let playerMoves = [1,2]
         console.log(`player tile 4 clicked`)
         playerFourthTile.classList.toggle('activate-tile')
         setTimeout(()=>{
-            playerFourthTile.classList.toggle('activate-tile');
-        }, 500);
+            playerFourthTile.classList.toggle('activate-tile')
+        }, 500)
         // add to playerMove array
         // check against computer move
     })
