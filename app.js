@@ -2,7 +2,7 @@
 // global variables
 // ##############################################
 let cpuMoves = []
-let playerMoves = [1,2,3,4]
+let playerMoves = []
 const slowDown = (time) => {
     return new Promise((resolve) => setTimeout(resolve, time))
 }
@@ -66,8 +66,9 @@ const playerThirdTile = document.querySelector("#player-third-tile")
 const playerFourthTile = document.querySelector("#player-fourth-tile")
 
 // status bar text
-const cpuStatusText = document.querySelector("#cpu-status-text")
-const playerStatusText = document.querySelector("#player-status-text")
+const statusText = document.querySelector("#status-text")
+// const cpuStatusText = document.querySelector("#cpu-status-text")
+// const playerStatusText = document.querySelector("#player-status-text")
 
 // player tile listeners
 playerFirstTile.addEventListener('click', () => {
@@ -79,7 +80,7 @@ playerFirstTile.addEventListener('click', () => {
     playerMoves.push(1)
     console.log(`Player picked tile 1`)
     console.log(`playerMoves array = ${playerMoves}`)
-    // check against computer move
+    compareMove()
 })
 playerSecondTile.addEventListener('click', () => {
     playerSecondTile.classList.toggle('activate-tile')
@@ -89,8 +90,7 @@ playerSecondTile.addEventListener('click', () => {
     playerMoves.push(2)
     console.log(`Player picked tile 2`)
     console.log(`playerMoves array = ${playerMoves}`)
-    // add to playerMove array
-    // check against computer move
+    compareMove()
 })
 playerThirdTile.addEventListener('click', () => {
     playerThirdTile.classList.toggle('activate-tile')
@@ -100,8 +100,7 @@ playerThirdTile.addEventListener('click', () => {
     playerMoves.push(3)
     console.log(`Player picked tile 3`)
     console.log(`playerMoves array = ${playerMoves}`)
-    // add to playerMove array
-    // check against computer move
+    compareMove()
 })
 playerFourthTile.addEventListener('click', () => {
     playerFourthTile.classList.toggle('activate-tile')
@@ -111,13 +110,7 @@ playerFourthTile.addEventListener('click', () => {
     playerMoves.push(4)
     console.log(`Player picked tile 4`)
     console.log(`playerMoves array = ${playerMoves}`)
-    // add to playerMove array
-    // check against computer move
-})
-
-cpuStatusText.addEventListener('click', ()=>{
-    console.log('clicked on cpuStatusText')
-    cpuStatusText.classList.toggle('bold')
+    compareMove()
 })
     
 // ##############################################
@@ -125,11 +118,10 @@ cpuStatusText.addEventListener('click', ()=>{
 // ##############################################
 
 function computerTurn(){
-playerStatusText.classList.toggle("hide")
+statusText.innerHTML="CPU"
 console.log(`computer's turn now.`)
 console.log(`generating random numbers for computer's moves`)
-
-// generate 4 random numbers and push them into the cpuMoves array
+// generate 2 random numbers and push them into the cpuMoves array
     for (let i=0;i<=1;i++) {
         cpuMoves.push(Math.floor(Math.random()*4)+1)
     }
@@ -140,55 +132,50 @@ console.log(`generating random numbers for computer's moves`)
 }
 
 const playerTurn = async(computerMovesArr, playerMovesArr) => {
-    // notify user that it's Player's turn by unhiding Player text
     console.log(`playerTurn starting`)
     console.log(`running slowDown for playerTurn`)
     await slowDown((computerMovesArr.length*3000)) // <- waits 3 seconds for each move the computer has
-    cpuStatusText.classList.toggle("hide")
-    playerStatusText.classList.toggle("hide")
+    statusText.innerHTML="Player"
+    // playerStatusText.classList.toggle("hide")
 console.log(`Player turn should start now`)
 console.log(`playerMoves:${playerMovesArr}`)
-// cpuStatusText.classList.toggle(`your-turn`)
-// playerStatusText.classList.toggle(`your-turn`)
 }
-// get inputs based on which buttons are clicked by user
 
+compareMove = () => {
+    if (playerMoves.length === cpuMoves.length) {
+        if (playerMoves[playerMoves.length-1] !== cpuMoves[cpuMoves.length-1]) {
+            gameOver()
+        } else if (playerMoves[playerMoves.length-1] === cpuMoves[cpuMoves.length-1]){
+        youWin()
+        }
+    }
+    // check last item in each array
+    // if playerArray.length is less than cpuMoves.length
+    // at any given point, compare the last items of each to determine if game should continue or end
+    // if at the last item in computerArray, win
+    // check against computer move
+}
+
+gameOver= ()=> {
+    statusText.innerHTML= `game over, man`
+}
+
+youWin= ()=> {
+    statusText.innerHTML=`you win, YATTTTAAAAAAAA`
+}
 
 // ##############################################
 // functions - NOT working
 // ##############################################
 
-// function compareTurns(){
-// compare user moves to CPU's moves
-//     console.log(`Testing Moves now...`)
-//     for (let i=0;i<=cpuMoves.length-1;i++) {
-//         console.log(`Computer ${i+1}: ${cpuMoves[i]} | Player ${i+1}: ${playerMoves[i]}`)
-//     if (cpuMoves[i] === playerMoves[i]) {
-//         console.log(`Move ${i+1} matches`)
-//         continue
-//     } 
-//     else {
-//         console.log(`Game Over`)
-//         break
-//         } 
-//     } console.log(`You win!`)
-//     console.log(`End of compareTurns function.`)
-// }
+
+
 
 // ##############################################
 // testing
 // ##############################################
-// function resolveAfter2Seconds(anyVar) {
-//     return new Promise (resolve => {
-//         setTimeout(()=>{
-//             console.log(`setTimeout between animate and playerturn`)
-//             resolve(anyVar)},
-//             ((cpuMoves.length)*2000))
-//     })
-// }
 
 
 computerTurn()
 animateCPUMoves(cpuMoves)
-// resolveAfter2Seconds()
 playerTurn(cpuMoves, playerMoves)

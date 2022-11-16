@@ -11,7 +11,7 @@ nav {
     justify-content: center;
 }
 .game-board {
-    background-color: rgba(255,255,255,.05);
+    /* background-color: rgba(255,255,255,.05); */
     width:900px;
     height:600px;
     display:flex;
@@ -23,12 +23,11 @@ nav {
 .board-section {
     width:90%;
     height:25%;
-    /* background-color: rgba(255,255,255,.25); */
     border-radius: 20px;
-padding:20px;
-display:flex;
-justify-content: space-around;
-align-items: center;
+    padding:20px;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
 }
 #computer-side {
     background-color: rgba(250,250,250,.5);
@@ -40,7 +39,6 @@ align-items: center;
     display:flex;
     flex-direction: column;
     align-items: center;
-    /* align-content: space-evenly; */
 }
 
 .footer-bar {
@@ -55,9 +53,6 @@ align-items: center;
 }
 
 /* status-bar modifier classes */
-#status-bar p{
-position:fixed;
-}
 .hide {
     display:none;
 }
@@ -75,6 +70,8 @@ position:fixed;
 .orange {
     background-color: rgb(232,164,51);
 }
+
+/* animation */
 .activate-tile{
     animation: activateTile .5s ease-in-out;
 }
