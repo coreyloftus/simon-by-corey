@@ -35,16 +35,16 @@ const animateCPUMoves = async (arr) => {
                 },1000)
             } 
         }
-        console.log(`animateCPUMoves complete`)
-        await slowDown(1000)
-        console.log(`running slowDown for animateCPUMoves`)
-        await slowDown(1000)
-        console.log(`3...`)
-        await slowDown(1000)
-        console.log(`2...`)
-        await slowDown(1000)
-        console.log(`1...`)
-        await slowDown(1000)
+        // await slowDown(1000)
+        // console.log(`running slowDown for animateCPUMoves`)
+        // await slowDown(1000)
+        // console.log(`3...`)
+        // await slowDown(1000)
+        // console.log(`2...`)
+        // await slowDown(1000)
+        // console.log(`1...`)
+        // await slowDown(1000)
+        // console.log(`animateCPUMoves complete`)
     }
     
 
@@ -123,33 +123,29 @@ cpuStatusText.addEventListener('click', ()=>{
 // ##############################################
 // functions - working
 // ##############################################
+
 function computerTurn(){
-// playerStatusText.classList.toggle("your-turn")
-// cpuStatusText.classList.toggle("your-turn")
+playerStatusText.classList.toggle("hide")
 console.log(`computer's turn now.`)
 console.log(`generating random numbers for computer's moves`)
 
 // generate 4 random numbers and push them into the cpuMoves array
-    for (let i=0;i<=3;i++) {
+    for (let i=0;i<=1;i++) {
         cpuMoves.push(Math.floor(Math.random()*4)+1)
     }
-    for (let i=0;i<=3;i++) {
+    for (let i=0;i<=1;i++) {
         console.log(`Computer move ${i+1}: ${cpuMoves[i]}`)
     }
     console.log(`end of computerTurn()`)
 }
 
 const playerTurn = async(computerMovesArr, playerMovesArr) => {
-// notify user that it's Player's turn by unhiding Player text
-console.log(`playerTurn starting`)
-console.log(`running slowDown for playerTurn`)
-await slowDown((computerMovesArr.length*4000))
-console.log(`3...`)
-await slowDown(1000)
-console.log(`2...`)
-await slowDown(1000)
-console.log(`1...`)
-await slowDown(1000)
+    // notify user that it's Player's turn by unhiding Player text
+    console.log(`playerTurn starting`)
+    console.log(`running slowDown for playerTurn`)
+    await slowDown((computerMovesArr.length*3000)) // <- waits 3 seconds for each move the computer has
+    cpuStatusText.classList.toggle("hide")
+    playerStatusText.classList.toggle("hide")
 console.log(`Player turn should start now`)
 console.log(`playerMoves:${playerMovesArr}`)
 // cpuStatusText.classList.toggle(`your-turn`)
