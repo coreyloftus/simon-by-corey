@@ -2,13 +2,14 @@
 // declarations
 let cpuMoves = []
 let playerMoves = []
-let gameLevel = 4
+let gameLevel = 1
 
 function slowDown (time) {
     return new Promise((resolve) => setTimeout(resolve, time))
 }
 
 const animateCPUMoves = async (arr) => {
+    statusText.innerHTML="CPU"
     for (let i = 0; i < arr.length; i++) {
         if (cpuMoves[i] === 1) {
             await slowDown(1000)
@@ -37,7 +38,6 @@ const animateCPUMoves = async (arr) => {
             } 
         }
     }
-    
 function playerClickedOne () {
     playerFirstTile.classList.toggle('activate-tile')
     setTimeout(()=>{
@@ -72,44 +72,77 @@ function playerClickedFour () {
 }
 function playGame(){
     statusBar.removeEventListener('click', playGame)
-    playerMoves = []
     cpuMoves = []
-    computerTurn()
+    gameRound()
+}
+function gameRound(){
+    playerMoves = []
+    generateComputerMove()
     animateCPUMoves(cpuMoves)
     playerTurn(cpuMoves, playerMoves)
-    }
-function computerTurn() {
-statusText.innerHTML="CPU"
-    for (let i = 0; i < gameLevel; i++) {
-        cpuMoves.push(Math.floor(Math.random()*gameLevel)+1)
-    }
 }
-
+function generateComputerMove() {
+    cpuMoves.push(Math.floor(Math.random()*4)+1)
+    console.log(`cpu Moves: ${cpuMoves}`)
+}
 const playerTurn = async(computerMovesArr) => {
     await slowDown((computerMovesArr.length*1600))
     statusText.innerHTML = "Player"
     addPlayerTileListeners()
 }
-
 function compareMove () {
     if (playerMoves.length === 1) {
-        if (playerMoves[0] !== cpuMoves[0]) {
-            gameOver()
-        }    
+        if (playerMoves[0] === cpuMoves[0]) {
+                if (playerMoves.length === gameLevel) {
+                    console.log(`Correct! Next round starting.`)
+                    gameLevel++
+                    gameRound()
+                }  
+                } else {
+                gameOver()
+                }
     }
     if (playerMoves.length === 2) {
-        if (playerMoves[1] !== cpuMoves[1]) {
+        if (playerMoves[0] === cpuMoves[0]) {
+            if (playerMoves[1] === cpuMoves[1]) {
+                if (playerMoves.length === gameLevel) {
+                    console.log(`Correct! Next round starting.`)
+                    gameLevel++
+                    gameRound()
+                }  
+            }
+        } else {
             gameOver()
-        }
     }
-    if (playerMoves.length === 3){
-        if (playerMoves[2] !== cpuMoves[2]) {
-            gameOver()
+    }
+    if (playerMoves.length === 3) {
+        if (playerMoves[0] === cpuMoves[0]) {
+            if (playerMoves[1] === cpuMoves[1]) {
+                if (playerMoves[2] === cpuMoves[2]) {
+                    if (playerMoves.length === gameLevel) {
+                        console.log(`Correct! Next round starting.`)
+                        gameLevel++
+                        gameRound()
+                    }  
+                } else {
+                    gameOver()
+                }
+            }
         }
     }
     if (playerMoves.length === 4) {
-        if (playerMoves[3] === cpuMoves[3]) {
-            youWin()
+        if (playerMoves[0] === cpuMoves[0]) {
+            if (playerMoves[1] === cpuMoves[1]) {
+                if (playerMoves[2] === cpuMoves[2]) {
+                    if (playerMoves[3] === cpuMoves[3]) {
+                        if (playerMoves.length === gameLevel) {
+                            youWin()
+                        } else {
+                            gameOver()
+                        }
+                    }
+                }
+            }
         }
     }
 }
