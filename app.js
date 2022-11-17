@@ -3,9 +3,12 @@
 // ##############################################
 let cpuMoves = []
 let playerMoves = []
+let difficultyLevel = 4
+
 const slowDown = (time) => {
     return new Promise((resolve) => setTimeout(resolve, time))
 }
+
 const animateCPUMoves = async (arr) => {
     console.log(`animating computer's moves now...`)
     for (let i = 0; i < arr.length; i++) {
@@ -35,16 +38,6 @@ const animateCPUMoves = async (arr) => {
                 },1000)
             } 
         }
-        // await slowDown(1000)
-        // console.log(`running slowDown for animateCPUMoves`)
-        // await slowDown(1000)
-        // console.log(`3...`)
-        // await slowDown(1000)
-        // console.log(`2...`)
-        // await slowDown(1000)
-        // console.log(`1...`)
-        // await slowDown(1000)
-        // console.log(`animateCPUMoves complete`)
     }
     
 
@@ -67,8 +60,7 @@ const playerFourthTile = document.querySelector("#player-fourth-tile")
 
 // status bar text
 const statusText = document.querySelector("#status-text")
-// const cpuStatusText = document.querySelector("#cpu-status-text")
-// const playerStatusText = document.querySelector("#player-status-text")
+const statusBar = document.querySelector("#status-bar")
 
 // player tile listeners
 playerFirstTile.addEventListener('click', () => {
@@ -122,10 +114,10 @@ statusText.innerHTML="CPU"
 console.log(`computer's turn now.`)
 console.log(`generating random numbers for computer's moves`)
 // generate 2 random numbers and push them into the cpuMoves array
-    for (let i=0;i<=1;i++) {
+    for (let i = 0; i < difficultyLevel;i++) {
         cpuMoves.push(Math.floor(Math.random()*4)+1)
     }
-    for (let i=0;i<=1;i++) {
+    for (let i = 0; i < difficultyLevel; i++) {
         console.log(`Computer move ${i+1}: ${cpuMoves[i]}`)
     }
     console.log(`end of computerTurn()`)
@@ -142,40 +134,69 @@ console.log(`playerMoves:${playerMovesArr}`)
 }
 
 compareMove = () => {
-    if (playerMoves.length === cpuMoves.length) {
-        if (playerMoves[playerMoves.length-1] !== cpuMoves[cpuMoves.length-1]) {
+    if (playerMoves.length === 1) {
+        if (playerMoves[0] !== cpuMoves[0]) {
             gameOver()
-        } else if (playerMoves[playerMoves.length-1] === cpuMoves[cpuMoves.length-1]){
-        youWin()
+        }    
+    }
+    if (playerMoves.length === 2) {
+        if (playerMoves[1] !== cpuMoves[1]) {
+            gameOver()
         }
     }
+    if (playerMoves.length === 3){
+        if (playerMoves[2] !== cpuMoves[2]) {
+            gameOver()
+        }
+    }
+    if (playerMoves.length === 4) {
+        if (playerMoves[3] === cpuMoves[3]) {
+            youWin()
+        }
+    }
+    // if ((playerMoves.length === cpuMoves.length) && (playerMoves[playerMoves.length-1] === cpuMoves[cpuMoves.length])) {
+    //     youWin()
+    // }
+}
+
+// upon tile click...
+// if playerMoves array length is 1, check against cpuMoves[0]
+// if playerMoves array length is 2, check against cpuMoves[1]
+
     // check last item in each array
     // if playerArray.length is less than cpuMoves.length
     // at any given point, compare the last items of each to determine if game should continue or end
     // if at the last item in computerArray, win
     // check against computer move
-}
+// }
 
 gameOver= ()=> {
     statusText.innerHTML= `game over, man`
+    setTimeout(()=>{
+        statusText.innerHTML = `click to play again`
+    },3000)
 }
 
 youWin= ()=> {
-    statusText.innerHTML=`you win, YATTTTAAAAAAAA`
+    statusText.innerHTML=`you win, YATTTTAAA~~~~~!!!`
+    setTimeout(()=> {
+        statusText.innerHTML = `click to play again`
+        statusBar.addEventListener('click', runGame())
+    },3000)
 }
 
-// ##############################################
-// functions - NOT working
-// ##############################################
-
-
-
 
 // ##############################################
-// testing
+// running the game round
 // ##############################################
 
-
+// packaged the game in a function so it could be called to start upon clicking a button or something
+const runGame = () =>{
+playerMoves = []
+cpuMoves = []
 computerTurn()
 animateCPUMoves(cpuMoves)
 playerTurn(cpuMoves, playerMoves)
+}
+
+runGame()
