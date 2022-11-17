@@ -40,13 +40,10 @@ const animateCPUMoves = async (arr) => {
     
 function playerClickedOne () {
     playerFirstTile.classList.toggle('activate-tile')
-    // removes activate-tile after animation completes
     setTimeout(()=>{
         playerFirstTile.classList.toggle('activate-tile')
     }, 500)
     playerMoves.push(1)
-    console.log(`Player picked tile 1`)
-    console.log(`playerMoves array = ${playerMoves}`)
     compareMove()
 }
 function playerClickedTwo () {
@@ -55,8 +52,6 @@ function playerClickedTwo () {
         playerSecondTile.classList.toggle('activate-tile')
     }, 500)
     playerMoves.push(2)
-    console.log(`Player picked tile 2`)
-    console.log(`playerMoves array = ${playerMoves}`)
     compareMove()
 }
 function playerClickedThree () {
@@ -65,8 +60,6 @@ function playerClickedThree () {
         playerThirdTile.classList.toggle('activate-tile')
     }, 500)
     playerMoves.push(3)
-    console.log(`Player picked tile 3`)
-    console.log(`playerMoves array = ${playerMoves}`)
     compareMove()
 }
 function playerClickedFour () {
@@ -75,11 +68,8 @@ function playerClickedFour () {
         playerFourthTile.classList.toggle('activate-tile')
     }, 500)
     playerMoves.push(4)
-    console.log(`Player picked tile 4`)
-    console.log(`playerMoves array = ${playerMoves}`)
     compareMove()
 }
-
 function playGame(){
     statusBar.removeEventListener('click', playGame)
     playerMoves = []
@@ -88,24 +78,17 @@ function playGame(){
     animateCPUMoves(cpuMoves)
     playerTurn(cpuMoves, playerMoves)
     }
-
 function computerTurn() {
 statusText.innerHTML="CPU"
-    for (let i = 0; i < gameLevel;i++) {
-        cpuMoves.push(Math.floor(Math.random()*gameLevel)+1)
-    }
     for (let i = 0; i < gameLevel; i++) {
-        console.log(`Computer move ${i+1}: ${cpuMoves[i]}`)
+        cpuMoves.push(Math.floor(Math.random()*gameLevel)+1)
     }
 }
 
-const playerTurn = async(computerMovesArr, playerMovesArr) => {
-    console.log(`running slowDown for playerTurn`)
-    await slowDown((computerMovesArr.length*1600)) // <- waits X milliseconds for each move the computer has
-    console.log(`playerTurn starting`)
+const playerTurn = async(computerMovesArr) => {
+    await slowDown((computerMovesArr.length*1600))
     statusText.innerHTML = "Player"
     addPlayerTileListeners()
-    // console.log(`playerMoves:${playerMovesArr}`)
 }
 
 function compareMove () {
@@ -132,7 +115,7 @@ function compareMove () {
 }
 
 function gameOver () {
-    statusText.innerHTML= `game over, man`
+    statusText.innerHTML= `game over, bud`
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
