@@ -11,25 +11,25 @@ const slowDown = (time) => {
 const animateCPUMoves = async (arr) => {
     for (let i = 0; i < arr.length; i++) {
         if (cpuMoves[i] === 1) {
-            await slowDown(2000)
+            await slowDown(1000)
             cpuFirstTile.classList.toggle('activate-tile')
             setTimeout(()=>{
                 cpuFirstTile.classList.toggle('activate-tile')
                 }, 1000)
             } if (cpuMoves[i] === 2) {
-                await slowDown(2000)
+                await slowDown(1500)
                 cpuSecondTile.classList.toggle(`activate-tile`)
                 setTimeout(()=>{
                     cpuSecondTile.classList.toggle(`activate-tile`)
                 },1000)
             } if (cpuMoves[i] === 3) {
-                await slowDown(2000)
+                await slowDown(1500)
                 cpuThirdTile.classList.toggle(`activate-tile`)
                 setTimeout(()=>{
                     cpuThirdTile.classList.toggle(`activate-tile`)
                 },1000)
             } if (cpuMoves[i]=== 4) {
-                await slowDown(2000)
+                await slowDown(1500)
                 cpuFourthTile.classList.toggle(`activate-tile`)
                 setTimeout(()=>{
                     cpuFourthTile.classList.toggle(`activate-tile`)
@@ -51,22 +51,19 @@ const playGame = () =>{
 
 function computerTurn(){
 statusText.innerHTML="CPU"
-console.log(`computer's turn now.`)
-console.log(`generating random numbers for computer's moves`)
     for (let i = 0; i < gameLevel;i++) {
         cpuMoves.push(Math.floor(Math.random()*gameLevel)+1)
     }
     for (let i = 0; i < gameLevel; i++) {
         console.log(`Computer move ${i+1}: ${cpuMoves[i]}`)
     }
-    console.log(`end of computerTurn()`)
 }
 
 const playerTurn = async(computerMovesArr, playerMovesArr) => {
-    console.log(`playerTurn starting`)
     console.log(`running slowDown for playerTurn`)
-    await slowDown((computerMovesArr.length*2500)) // <- waits 3 seconds for each move the computer has
-    statusText.innerHTML="Player"
+    await slowDown((computerMovesArr.length*1600)) // <- waits X milliseconds for each move the computer has
+    console.log(`playerTurn starting`)
+    statusText.innerHTML = "Player"
     addPlayerTileListeners()
     console.log(`playerMoves:${playerMovesArr}`)
 }
@@ -112,7 +109,7 @@ let gameOver= ()=> {
     statusText.innerHTML= `game over, man`
     setTimeout(()=>{
         statusText.innerHTML = `click to play again`
-        statusBar.addEventListener('click', playGame())
+        statusBar.addEventListener('click', playGame)
     },2000)
 }
 
@@ -120,7 +117,7 @@ let youWin= ()=> {
     statusText.innerHTML=`you win, YATTTTAAA~~~~~!!!`
     setTimeout(()=> {
         statusText.innerHTML = `click to play again`
-        statusBar.addEventListener('click', playGame())
+        statusBar.addEventListener('click', playGame)
     },2000)
 }
 // ##############################################
