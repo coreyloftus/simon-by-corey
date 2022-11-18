@@ -1,26 +1,28 @@
-# simon-by-corey
+# Simon by Corey
 
-Simon Pseudocode
+- created November 2022
+- for General Assembly | Software Engineering Intensive 10-31
+- written in HTML, CSS, JavaScript
+- based on [Simon](<https://en.wikipedia.org/wiki/Simon_(game)>), created by Milton Bradley in 1978.
 
-    Game Logic
+## Screenshots:
 
-    WIN CONDITIONS
-        - player successfully replicates 3 rounds
+![Simon screenshot 1](simon-1.png)
+![Simon screenshot 2](simon-2.png)
+![Simon screenshot 3](simon-3.png)
 
-    ONE ROUND
-        - COMPUTER (simon’s) PHASE
-            - computer generates sequence of 4 random numbers b/w 1-4
-            - numbers correspond to colored div tiles
-            - each one lights up in sequence
+## Getting started:
 
-        PLAYER PHASE
-        - player must enter the same 4 number sequence
-        game checks for accuracy each time a number is entered
-        - IF player enters a wrong number, gameOver
-        ELSE go on to next round
+- Play the game at (https://coreyloftus.github.io/simon-by-corey/).
 
-    STRETCH GOALS
-        - each div tile makes a sound when it lights up
-        - difficulty mode options (easy is 4 tiles, medium is 5, hard is 6)
-        - opening splash screen made of up tiles that spell "SIMON"
-        - game over screen made up of tiles that spells "GAME OVER"
+## Next steps:
+
+- Tweak timing of message displays at round changes.
+- Add option for Player to specify number of rounds (or play til infinity!)
+- Add media queries to adjust for mobile screen sizes.
+
+## Contact:
+
+Thanks for checking out my game!
+
+Questions? Feedback? Contact me at coreyloftus@gmail.com.

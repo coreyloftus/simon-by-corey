@@ -1,5 +1,3 @@
-// ##############################################
-// declarations
 let cpuMoves = []
 let playerMoves = []
 let gameLevel = 1
@@ -177,7 +175,7 @@ function compareMove () {
 }
 
 function gameOver () {
-    statusText.innerText= `game over, bud`
+    statusText.innerText= `🫣 game over 🫣`
     errorSound.play()
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
@@ -186,11 +184,11 @@ function gameOver () {
     setTimeout(()=>{
         statusText.innerHTML = `click to play again`
         statusBar.addEventListener('click', playGame)
-    },2000)
+    },3000)
 }
 
 function youWin() {
-    statusText.innerText=`^_^ you win~! ^_^`
+    statusText.innerText=`🎉🕺 you win 🕺🎉`
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
@@ -198,10 +196,9 @@ function youWin() {
     setTimeout(()=> {
         statusText.innerHTML = `click to play again`
         statusBar.addEventListener('click', playGame)
-    },2000)
+    },3000)
 }
-// ##############################################
-// getters & setters
+
 const cpuFirstTile = document.querySelector("#cpu-first-tile")
 const cpuSecondTile = document.querySelector("#cpu-second-tile")
 const cpuThirdTile = document.querySelector("#cpu-third-tile")
@@ -224,19 +221,4 @@ playerSecondTile.addEventListener('click', playerClickedTwo)
 playerThirdTile.addEventListener('click', playerClickedThree)
 playerFourthTile.addEventListener('click', playerClickedFour)
 }
-
-const removePlayerTileListeners = () => {
-document.removeEventListener('keydown', function (e) {
-    if (e.code === 'Digit1') {
-        playerClickedOne()
-    } if (e.code === 'Digit2') {
-        playerClickedTwo()
-    } if (e.code === 'Digit3') {
-        playerClickedThree()
-    } if (e.code === 'Digit4') {
-        playerClickedFour()
-    }
-})
-}
-// ##############################################
 // end of line.
