@@ -3,16 +3,34 @@
 let cpuMoves = []
 let playerMoves = []
 let gameLevel = 1
+const bannerColors = [`blue`, `red`,`green`,`orange`]
+let bannerCounter = 0
+
+const banner1 = setInterval(function (){
+    statusText.innerHTML=`4 rounds to win`
+    statusBar.classList.add(bannerColors[bannerCounter])
+    console.log(`banner1 color: ${bannerColors[bannerCounter]} | counter: ${bannerCounter}`)}
+    ,1000)
+    
+    const banner2 = setInterval(function(){
+        statusText.innerHTML=`Click to play`
+        statusBar.classList.remove(bannerColors[bannerCounter])
+        if (bannerCounter === 3){
+            bannerCounter = 0
+            } else {
+        bannerCounter++
+            }
+        console.log(`banner2 color: ${bannerColors[bannerCounter]} | counter: ${bannerCounter}`)}
+    ,2000)
 
 function slowDown (time) {
     return new Promise((resolve) => setTimeout(resolve, time))
 }
 
 const animateCPUMoves = async (arr) => {
-    statusText.innerHTML="CPU"
     for (let i = 0; i < arr.length; i++) {
         if (cpuMoves[i] === 1) {
-            await slowDown(1000)
+            await slowDown(1500)
             cpuFirstTile.classList.toggle('activate-tile')
             setTimeout(()=>{
                 cpuFirstTile.classList.toggle('activate-tile')
@@ -72,12 +90,15 @@ function playerClickedFour () {
 }
 function playGame(){
     statusBar.removeEventListener('click', playGame)
+    clearInterval(banner1)
+    clearInterval(banner2)
     cpuMoves = []
     gameRound()
 }
 function gameRound(){
     playerMoves = []
     generateComputerMove()
+    statusText.innerHTML="CPU"
     animateCPUMoves(cpuMoves)
     playerTurn(cpuMoves, playerMoves)
 }
@@ -86,7 +107,7 @@ function generateComputerMove() {
     console.log(`cpu Moves: ${cpuMoves}`)
 }
 const playerTurn = async(computerMovesArr) => {
-    await slowDown((computerMovesArr.length*1600))
+    await slowDown((computerMovesArr.length*2000))
     statusText.innerHTML = "Player"
     addPlayerTileListeners()
 }
@@ -94,7 +115,6 @@ function compareMove () {
     if (playerMoves.length === 1) {
         if (playerMoves[0] === cpuMoves[0]) {
                 if (playerMoves.length === gameLevel) {
-                    console.log(`Correct! Next round starting.`)
                     gameLevel++
                     gameRound()
                 }  
@@ -106,21 +126,19 @@ function compareMove () {
         if (playerMoves[0] === cpuMoves[0]) {
             if (playerMoves[1] === cpuMoves[1]) {
                 if (playerMoves.length === gameLevel) {
-                    console.log(`Correct! Next round starting.`)
                     gameLevel++
                     gameRound()
                 }  
             }
         } else {
             gameOver()
-    }
+        }
     }
     if (playerMoves.length === 3) {
         if (playerMoves[0] === cpuMoves[0]) {
             if (playerMoves[1] === cpuMoves[1]) {
                 if (playerMoves[2] === cpuMoves[2]) {
                     if (playerMoves.length === gameLevel) {
-                        console.log(`Correct! Next round starting.`)
                         gameLevel++
                         gameRound()
                     }  
@@ -160,7 +178,7 @@ function gameOver () {
 }
 
 function youWin() {
-    statusText.innerHTML=`you win, YATTTTAAA~~~~~!!!`
+    statusText.innerHTML=`^_^ you win~! ^_^`
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
