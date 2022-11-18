@@ -7,21 +7,22 @@ const bannerColors = [`blue`, `red`,`green`,`orange`]
 let bannerCounter = 0
 
 const banner1 = setInterval(function (){
-    statusText.innerHTML=`4 rounds to win`
+    statusText.innerText=`4 rounds to win`
     statusBar.classList.add(bannerColors[bannerCounter])
-    console.log(`banner1 color: ${bannerColors[bannerCounter]} | counter: ${bannerCounter}`)}
-    ,1000)
+    }, 1000)
     
-    const banner2 = setInterval(function(){
-        statusText.innerHTML=`Click to play`
-        statusBar.classList.remove(bannerColors[bannerCounter])
-        if (bannerCounter === 3){
-            bannerCounter = 0
-            } else {
-        bannerCounter++
-            }
-        console.log(`banner2 color: ${bannerColors[bannerCounter]} | counter: ${bannerCounter}`)}
-    ,2000)
+const banner2 = setInterval(function(){
+    statusText.innerText=`Click to play`
+    statusBar.classList.remove(bannerColors[bannerCounter])
+    if (bannerCounter === 3){
+        bannerCounter = 0
+        } else {
+    bannerCounter++
+        }
+    }, 2000)
+banner1
+banner2
+
 
 function slowDown (time) {
     return new Promise((resolve) => setTimeout(resolve, time))
@@ -92,6 +93,7 @@ function playGame(){
     statusBar.removeEventListener('click', playGame)
     clearInterval(banner1)
     clearInterval(banner2)
+    statusBar.classList.remove(bannerColors[bannerCounter])
     cpuMoves = []
     gameRound()
 }
@@ -166,7 +168,7 @@ function compareMove () {
 }
 
 function gameOver () {
-    statusText.innerHTML= `game over, bud`
+    statusText.innerText= `game over, bud`
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
@@ -178,7 +180,7 @@ function gameOver () {
 }
 
 function youWin() {
-    statusText.innerHTML=`^_^ you win~! ^_^`
+    statusText.innerText=`^_^ you win~! ^_^`
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
