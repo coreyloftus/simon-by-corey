@@ -116,6 +116,7 @@ const playerTurn = async(computerMovesArr) => {
 function compareMove () {
     if (playerMoves.length === 1) {
         if (playerMoves[0] === cpuMoves[0]) {
+            tileClick.play()
                 if (playerMoves.length === gameLevel) {
                     gameLevel++
                     gameRound()
@@ -126,7 +127,9 @@ function compareMove () {
     }
     if (playerMoves.length === 2) {
         if (playerMoves[0] === cpuMoves[0]) {
+            tileClick.play()
             if (playerMoves[1] === cpuMoves[1]) {
+                tileClick.play()
                 if (playerMoves.length === gameLevel) {
                     gameLevel++
                     gameRound()
@@ -138,8 +141,11 @@ function compareMove () {
     }
     if (playerMoves.length === 3) {
         if (playerMoves[0] === cpuMoves[0]) {
+            tileClick.play()
             if (playerMoves[1] === cpuMoves[1]) {
+                tileClick.play()
                 if (playerMoves[2] === cpuMoves[2]) {
+                    tileClick.play()
                     if (playerMoves.length === gameLevel) {
                         gameLevel++
                         gameRound()
@@ -152,8 +158,11 @@ function compareMove () {
     }
     if (playerMoves.length === 4) {
         if (playerMoves[0] === cpuMoves[0]) {
+            tileClick.play()
             if (playerMoves[1] === cpuMoves[1]) {
+                tileClick.play()
                 if (playerMoves[2] === cpuMoves[2]) {
+                    tileClick.play()
                     if (playerMoves[3] === cpuMoves[3]) {
                         if (playerMoves.length === gameLevel) {
                             youWin()
@@ -169,6 +178,7 @@ function compareMove () {
 
 function gameOver () {
     statusText.innerText= `game over, bud`
+    errorSound.play()
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
@@ -205,11 +215,28 @@ const statusText = document.querySelector("#status-text")
 const statusBar = document.querySelector("#status-bar")
 statusBar.addEventListener('click', playGame)
 
+const errorSound = document.querySelector('#audio-error')
+const tileClick = document.querySelector('#audio-tile-click')
+
 const addPlayerTileListeners = () => {
 playerFirstTile.addEventListener('click', playerClickedOne)
 playerSecondTile.addEventListener('click', playerClickedTwo)
 playerThirdTile.addEventListener('click', playerClickedThree)
 playerFourthTile.addEventListener('click', playerClickedFour)
+}
+
+const removePlayerTileListeners = () => {
+document.removeEventListener('keydown', function (e) {
+    if (e.code === 'Digit1') {
+        playerClickedOne()
+    } if (e.code === 'Digit2') {
+        playerClickedTwo()
+    } if (e.code === 'Digit3') {
+        playerClickedThree()
+    } if (e.code === 'Digit4') {
+        playerClickedFour()
+    }
+})
 }
 // ##############################################
 // end of line.
