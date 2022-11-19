@@ -31,27 +31,29 @@ const animateCPUMoves = async (arr) => {
         if (cpuMoves[i] === 1) {
             await slowDown(1500)
             cpuFirstTile.classList.toggle('activate-tile')
+            // cpuFirstTile.classList.toggle('shadow-blue')
             setTimeout(()=>{
                 cpuFirstTile.classList.toggle('activate-tile')
-                }, 1000)
+                // cpuFirstTile.classList.toggle('shadow-blue')
+                }, 500)
             } if (cpuMoves[i] === 2) {
                 await slowDown(1500)
                 cpuSecondTile.classList.toggle(`activate-tile`)
                 setTimeout(()=>{
                     cpuSecondTile.classList.toggle(`activate-tile`)
-                },1000)
+                },500)
             } if (cpuMoves[i] === 3) {
                 await slowDown(1500)
                 cpuThirdTile.classList.toggle(`activate-tile`)
                 setTimeout(()=>{
                     cpuThirdTile.classList.toggle(`activate-tile`)
-                },1000)
+                },500)
             } if (cpuMoves[i]=== 4) {
                 await slowDown(1500)
                 cpuFourthTile.classList.toggle(`activate-tile`)
                 setTimeout(()=>{
                     cpuFourthTile.classList.toggle(`activate-tile`)
-                },1000)
+                },500)
             } 
         }
     }
@@ -85,6 +87,7 @@ function playerClickedFour () {
         playerFourthTile.classList.toggle('activate-tile')
     }, 500)
     playerMoves.push(4)
+    console.log(`playerMoves: ${playerMoves}`)
     compareMove()
 }
 function playGame(){
@@ -108,6 +111,8 @@ function generateComputerMove() {
 }
 const playerTurn = async(computerMovesArr) => {
     await slowDown((computerMovesArr.length*2000))
+    console.log(`pre-playTurn slowdown done`)
+    console.log(`playerMoves: ${playerMoves}`)
     statusText.innerHTML = "Player"
     addPlayerTileListeners()
 }
@@ -177,6 +182,7 @@ function compareMove () {
 function gameOver () {
     statusText.innerText= `🫣 game over 🫣`
     errorSound.play()
+    gameLevel=1
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
@@ -189,6 +195,7 @@ function gameOver () {
 
 function youWin() {
     statusText.innerText=`🎉🕺 you win 🕺🎉`
+    gameLevel=1
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
