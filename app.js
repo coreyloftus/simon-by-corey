@@ -7,7 +7,7 @@ let bannerCounter = 0
 const banner1 = setInterval(function (){
     statusText.innerText=`4 rounds to win`
     statusBar.classList.add(bannerColors[bannerCounter])
-    }, 1000)
+    }, 2000)
     
 const banner2 = setInterval(function(){
     statusText.innerText=`Click to play`
@@ -17,7 +17,7 @@ const banner2 = setInterval(function(){
         } else {
     bannerCounter++
         }
-    }, 3000)
+    }, 4000)
 banner1
 banner2
 
@@ -102,6 +102,10 @@ function gameRound(){
     playerMoves = []
     generateComputerMove()
     statusText.innerHTML="CPU"
+    playerFirstTile.removeEventListener('click', playerClickedOne)
+    playerSecondTile.removeEventListener('click', playerClickedTwo)
+    playerThirdTile.removeEventListener('click', playerClickedThree)
+    playerFourthTile.removeEventListener('click', playerClickedFour)
     animateCPUMoves(cpuMoves)
     playerTurn(cpuMoves, playerMoves)
 }
@@ -110,7 +114,6 @@ function generateComputerMove() {
 }
 const playerTurn = async(computerMovesArr) => {
     await slowDown((computerMovesArr.length*2000))
-    console.log(`playerMoves: ${playerMoves}`)
     statusText.innerHTML = "Player"
     addPlayerTileListeners()
 }
