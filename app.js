@@ -17,7 +17,7 @@ const banner2 = setInterval(function(){
         } else {
     bannerCounter++
         }
-    }, 2000)
+    }, 3000)
 banner1
 banner2
 
@@ -31,26 +31,28 @@ const animateCPUMoves = async (arr) => {
         if (cpuMoves[i] === 1) {
             await slowDown(1500)
             cpuFirstTile.classList.toggle('activate-tile')
-            // cpuFirstTile.classList.toggle('shadow-blue')
+            audioRightMove.play()
             setTimeout(()=>{
                 cpuFirstTile.classList.toggle('activate-tile')
-                // cpuFirstTile.classList.toggle('shadow-blue')
                 }, 500)
             } if (cpuMoves[i] === 2) {
                 await slowDown(1500)
                 cpuSecondTile.classList.toggle(`activate-tile`)
+                audioRightMove.play()
                 setTimeout(()=>{
                     cpuSecondTile.classList.toggle(`activate-tile`)
                 },500)
             } if (cpuMoves[i] === 3) {
                 await slowDown(1500)
                 cpuThirdTile.classList.toggle(`activate-tile`)
+                audioRightMove.play()
                 setTimeout(()=>{
                     cpuThirdTile.classList.toggle(`activate-tile`)
                 },500)
             } if (cpuMoves[i]=== 4) {
                 await slowDown(1500)
                 cpuFourthTile.classList.toggle(`activate-tile`)
+                audioRightMove.play()
                 setTimeout(()=>{
                     cpuFourthTile.classList.toggle(`activate-tile`)
                 },500)
@@ -87,7 +89,6 @@ function playerClickedFour () {
         playerFourthTile.classList.toggle('activate-tile')
     }, 500)
     playerMoves.push(4)
-    console.log(`playerMoves: ${playerMoves}`)
     compareMove()
 }
 function playGame(){
@@ -95,7 +96,6 @@ function playGame(){
     clearInterval(banner1)
     clearInterval(banner2)
     statusBar.classList.remove(bannerColors[bannerCounter])
-    cpuMoves = []
     gameRound()
 }
 function gameRound(){
@@ -107,11 +107,9 @@ function gameRound(){
 }
 function generateComputerMove() {
     cpuMoves.push(Math.floor(Math.random()*4)+1)
-    console.log(`cpu Moves: ${cpuMoves}`)
 }
 const playerTurn = async(computerMovesArr) => {
     await slowDown((computerMovesArr.length*2000))
-    console.log(`pre-playTurn slowdown done`)
     console.log(`playerMoves: ${playerMoves}`)
     statusText.innerHTML = "Player"
     addPlayerTileListeners()
@@ -119,7 +117,7 @@ const playerTurn = async(computerMovesArr) => {
 function compareMove () {
     if (playerMoves.length === 1) {
         if (playerMoves[0] === cpuMoves[0]) {
-            tileClick.play()
+            audioRightMove.play()
                 if (playerMoves.length === gameLevel) {
                     gameLevel++
                     gameRound()
@@ -130,9 +128,9 @@ function compareMove () {
     }
     if (playerMoves.length === 2) {
         if (playerMoves[0] === cpuMoves[0]) {
-            tileClick.play()
+            audioRightMove.play()
             if (playerMoves[1] === cpuMoves[1]) {
-                tileClick.play()
+                audioRightMove.play()
                 if (playerMoves.length === gameLevel) {
                     gameLevel++
                     gameRound()
@@ -144,11 +142,11 @@ function compareMove () {
     }
     if (playerMoves.length === 3) {
         if (playerMoves[0] === cpuMoves[0]) {
-            tileClick.play()
+            audioRightMove.play()
             if (playerMoves[1] === cpuMoves[1]) {
-                tileClick.play()
+                audioRightMove.play()
                 if (playerMoves[2] === cpuMoves[2]) {
-                    tileClick.play()
+                    audioRightMove.play()
                     if (playerMoves.length === gameLevel) {
                         gameLevel++
                         gameRound()
@@ -161,11 +159,11 @@ function compareMove () {
     }
     if (playerMoves.length === 4) {
         if (playerMoves[0] === cpuMoves[0]) {
-            tileClick.play()
+            audioRightMove.play()
             if (playerMoves[1] === cpuMoves[1]) {
-                tileClick.play()
+                audioRightMove.play()
                 if (playerMoves[2] === cpuMoves[2]) {
-                    tileClick.play()
+                    audioRightMove.play()
                     if (playerMoves[3] === cpuMoves[3]) {
                         if (playerMoves.length === gameLevel) {
                             youWin()
@@ -181,7 +179,9 @@ function compareMove () {
 
 function gameOver () {
     statusText.innerText= `🫣 game over 🫣`
-    errorSound.play()
+    audioWrongMove.play()
+    cpuMoves = []
+    playerMoves = []
     gameLevel=1
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
@@ -195,6 +195,9 @@ function gameOver () {
 
 function youWin() {
     statusText.innerText=`🎉🕺 you win 🕺🎉`
+    audioWinGame.play()
+    cpuMoves = []
+    playerMoves = []
     gameLevel=1
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
@@ -219,8 +222,9 @@ const statusText = document.querySelector("#status-text")
 const statusBar = document.querySelector("#status-bar")
 statusBar.addEventListener('click', playGame)
 
-const errorSound = document.querySelector('#audio-error')
-const tileClick = document.querySelector('#audio-tile-click')
+const audioWrongMove = document.querySelector('#audio-wrong-move')
+const audioRightMove = document.querySelector('#audio-right-move')
+const audioWinGame = document.querySelector('#audio-win-game')
 
 const addPlayerTileListeners = () => {
 playerFirstTile.addEventListener('click', playerClickedOne)
