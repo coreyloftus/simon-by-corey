@@ -10,6 +10,7 @@
 ![Simon screenshot 1](simon-1.png)
 ![Simon screenshot 2](simon-2.png)
 ![Simon screenshot 3](simon-3.png)
+![Simon screenshot 4](simon-4.png)
 
 ## Getting started:
 
