@@ -18,7 +18,7 @@
 
 ## Next steps:
 
-- Tweak timing of message displays at round changes.
+- Refine timing of message displays at round changes.
 - Add option for Player to specify number of rounds (or play til infinity!)
 - Add media queries to adjust for mobile screen sizes.
 

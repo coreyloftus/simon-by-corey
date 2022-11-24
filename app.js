@@ -12,11 +12,6 @@ const banner1 = setInterval(function (){
 const banner2 = setInterval(function(){
     statusText.innerText=`Click to play`
     statusBar.classList.remove(bannerColors[bannerCounter])
-    if (bannerCounter === 3){
-        bannerCounter = 0
-        } else {
-    bannerCounter++
-        }
     }, 4000)
 banner1
 banner2
