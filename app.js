@@ -112,8 +112,6 @@ const playerTurn = async(computerMovesArr) => {
 function compareMove () {
     audioRightMove.play()
     for (let i=0; i<playerMoves.length; i++){
-        // if (playerMoves[i] === cpuMoves[i] && playerMoves.length < gameLevel) {
-            // }
         if (playerMoves[i] !== cpuMoves[i]) {
             gameOver()
         }
