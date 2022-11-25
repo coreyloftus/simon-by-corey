@@ -4,18 +4,15 @@ let gameLevel = 1
 const bannerColors = [`blue`, `red`,`green`,`orange`]
 let bannerCounter = 0
 
-const banner1 = setInterval(function (){
-    statusText.innerText=`4 rounds to win`
+const openingBanner = setInterval(function (){
     statusBar.classList.add(bannerColors[bannerCounter])
-    }, 2000)
-    
-const banner2 = setInterval(function(){
-    statusText.innerText=`Click to play`
-    statusBar.classList.remove(bannerColors[bannerCounter])
-    }, 4000)
-banner1
-banner2
-
+    if (bannerCounter === 4){
+        statusBar.classList.remove(bannerColors[0], bannerColors[1],bannerColors[2],bannerColors[3])
+        bannerCounter = -1
+    }
+    bannerCounter++
+    }, 1000)
+openingBanner
 
 function slowDown (time) {
     return new Promise((resolve) => setTimeout(resolve, time))
@@ -88,9 +85,8 @@ function playerClickedFour () {
 }
 function playGame(){
     statusBar.removeEventListener('click', playGame)
-    clearInterval(banner1)
-    clearInterval(banner2)
-    statusBar.classList.remove(bannerColors[bannerCounter])
+    clearInterval(openingBanner)
+    statusBar.classList.remove(bannerColors[0], bannerColors[1],bannerColors[2],bannerColors[3])
     gameRound()
 }
 function gameRound(){
