@@ -5,13 +5,14 @@ const bannerColors = [`blue`, `red`,`green`,`orange`]
 let bannerCounter = 0
 
 const openingBanner = setInterval(function (){
+    statusText.innerText= `Click to play`
     statusBar.classList.add(bannerColors[bannerCounter])
     if (bannerCounter === 4){
-        statusBar.classList.remove(bannerColors[0], bannerColors[1],bannerColors[2],bannerColors[3])
-        bannerCounter = -1
+        statusBar.classList.remove(bannerColors[1],bannerColors[2],bannerColors[3])
+        bannerCounter = 0
     }
     bannerCounter++
-    }, 1000)
+    }, 1500)
 openingBanner
 
 function slowDown (time) {
@@ -109,82 +110,36 @@ const playerTurn = async(computerMovesArr) => {
     addPlayerTileListeners()
 }
 function compareMove () {
-    if (playerMoves.length === 1) {
-        if (playerMoves[0] === cpuMoves[0]) {
-            audioRightMove.play()
-                if (playerMoves.length === gameLevel) {
-                    gameLevel++
-                    gameRound()
-                }  
-                } else {
-                gameOver()
-                }
-    }
-    if (playerMoves.length === 2) {
-        if (playerMoves[0] === cpuMoves[0]) {
-            audioRightMove.play()
-            if (playerMoves[1] === cpuMoves[1]) {
-                audioRightMove.play()
-                if (playerMoves.length === gameLevel) {
-                    gameLevel++
-                    gameRound()
-                }  
-            }
-        } else {
+    audioRightMove.play()
+    for (let i=0; i<playerMoves.length; i++){
+        // if (playerMoves[i] === cpuMoves[i] && playerMoves.length < gameLevel) {
+            // }
+        if (playerMoves[i] !== cpuMoves[i]) {
             gameOver()
         }
-    }
-    if (playerMoves.length === 3) {
-        if (playerMoves[0] === cpuMoves[0]) {
+        else if ((playerMoves.length === gameLevel) && (playerMoves[-1] === cpuMoves[-1])) {
             audioRightMove.play()
-            if (playerMoves[1] === cpuMoves[1]) {
-                audioRightMove.play()
-                if (playerMoves[2] === cpuMoves[2]) {
-                    audioRightMove.play()
-                    if (playerMoves.length === gameLevel) {
-                        gameLevel++
-                        gameRound()
-                    }  
-                } else {
-                    gameOver()
-                }
-            }
-        }
-    }
-    if (playerMoves.length === 4) {
-        if (playerMoves[0] === cpuMoves[0]) {
-            audioRightMove.play()
-            if (playerMoves[1] === cpuMoves[1]) {
-                audioRightMove.play()
-                if (playerMoves[2] === cpuMoves[2]) {
-                    audioRightMove.play()
-                    if (playerMoves[3] === cpuMoves[3]) {
-                        if (playerMoves.length === gameLevel) {
-                            youWin()
-                        } else {
-                            gameOver()
-                        }
-                    }
-                }
-            }
+            gameLevel++
+            gameRound()
         }
     }
 }
 
-function gameOver () {
+let gameOver = async function () {
     statusText.innerText= `🫣 game over 🫣`
     audioWrongMove.play()
-    cpuMoves = []
-    playerMoves = []
-    gameLevel=1
     playerFirstTile.removeEventListener('click', playerClickedOne)
     playerSecondTile.removeEventListener('click', playerClickedTwo)
     playerThirdTile.removeEventListener('click', playerClickedThree)
     playerFourthTile.removeEventListener('click', playerClickedFour)
-    setTimeout(()=>{
-        statusText.innerHTML = `click to play again`
-        statusBar.addEventListener('click', playGame)
-    },3000)
+    await slowDown (2000)
+    statusText.innerHTML = `You reached level: ${gameLevel}`
+    await slowDown (2000)
+    statusBar.addEventListener('click', playGame)
+    cpuMoves = []
+    playerMoves = []
+    gameLevel=1
+    statusText.innerText= `Click to play again`
 }
 
 function youWin() {
